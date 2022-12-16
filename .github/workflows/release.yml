@@ -12,19 +12,19 @@ jobs:
       with:
         fetch-depth: '0'
 
-    - id: tag_version
+    - name: Bump version and push tag
+      id: tag_version
       uses: anothrNick/github-tag-action@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         DEFAULT_BUMP: minor
         WITH_V: true
-    - name: Zip artifacts
-      shell: bash
-      run: zip test.zip hello/*
+
+    - shell: bash
+      run: zip test.zip hello
       
     - name: Release
       uses: softprops/action-gh-release@v1
-      #if: startsWith(github.ref, 'refs/tags/')
       with:
         tag_name: ${{ steps.tag_version.outputs.new_tag }}
         generate_release_notes: true
