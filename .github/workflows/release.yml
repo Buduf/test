@@ -21,7 +21,7 @@ jobs:
         WITH_V: true
 
     - shell: bash
-      run: cd hello; zip -r "../Hello and welcome.zip" *
+      run: cd hello; zip -r "../Hello and welcome.zip" .
       
     - name: Release
       uses: softprops/action-gh-release@v1
