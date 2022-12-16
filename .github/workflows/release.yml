@@ -12,8 +12,7 @@ jobs:
       with:
         fetch-depth: '0'
 
-    - name: Bump version and push tag
-      id: tag_version
+    - id: tag_version
       uses: anothrNick/github-tag-action@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -21,7 +20,7 @@ jobs:
         WITH_V: true
     - name: Zip artifacts
       shell: bash
-      run: zip hello/* test.zip
+      run: zip test.zip hello/*
       
     - name: Release
       uses: softprops/action-gh-release@v1
