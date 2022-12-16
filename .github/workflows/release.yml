@@ -21,11 +21,11 @@ jobs:
         WITH_V: true
 
     - shell: bash
-      run: zip -r "Hello and welcome.zip" hello/
+      run: cd hello; zip -r "../Hello and welcome.zip" *
       
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
         tag_name: ${{ steps.tag_version.outputs.new_tag }}
         generate_release_notes: true
-        files: test.zip
+        files: "Hello and welcome.zip"
