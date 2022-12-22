@@ -6,7 +6,7 @@ on:
       - master
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@v3
       with:
@@ -20,12 +20,15 @@ jobs:
         DEFAULT_BUMP: minor
         WITH_V: true
 
-    - shell: bash
-      run: cd hello; zip -r "../Hello and welcome.zip" .
+    - name: Zip
+      uses: vimtor/action-zip@v1
+        with:
+          files: hello/
+          dest: Hello-and-welcome.zip
       
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
         tag_name: ${{ steps.tag_version.outputs.new_tag }}
         generate_release_notes: true
-        files: "Hello and welcome.zip"
+        files: "Hello-and-welcome.zip"
