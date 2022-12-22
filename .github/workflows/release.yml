@@ -22,9 +22,9 @@ jobs:
 
     - name: Zip
       uses: vimtor/action-zip@v1
-        with:
-          files: hello/
-          dest: Hello-and-welcome.zip
+      with:
+        files: hello/
+        dest: Hello-and-welcome.zip
       
     - name: Release
       uses: softprops/action-gh-release@v1
